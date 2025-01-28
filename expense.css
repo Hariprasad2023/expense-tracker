@@ -1,0 +1,136 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  .container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px;
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  
+  input,select {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  button {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  
+  /* Total Section */
+  #total {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  #total h2 {
+    font-size: 1.5rem;
+  }
+  
+  #total-amount {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #4CAF50;
+  }
+  
+  /* Expense Table */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #f4f4f9;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  td {
+    background-color: #fafafa;
+  }
+  
+  .delete-btn {
+    color: red;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+  }
+  
+  .delete-btn:hover {
+    text-decoration: underline;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 600px) {
+    .container {
+      padding: 15px;
+    }
+  
+    h1 {
+      font-size: 1.5rem;
+    }
+  
+    table {
+      font-size: 0.9rem;
+    }
+  
+    input, button,select {
+      font-size: 1rem;
+    }
+  
+    #total h2 {
+      font-size: 1.2rem;
+    }
+  
+    #total-amount {
+      font-size: 1.4rem;
+    }
+  }
+  
