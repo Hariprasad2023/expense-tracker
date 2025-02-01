@@ -1,5 +1,5 @@
 document.getElementById('expense-form').addEventListener('submit', addExpense);
-document.getElementById('filter-category').addEventListener('change', filterExpenses); // Add event listener for category filter
+document.getElementById('filter-category').addEventListener('change', filterExpenses);
 
 let expenses = JSON.parse(localStorage.getItem('expenses')) || [];
 let totalAmount = 0;
@@ -8,6 +8,7 @@ let totalAmount = 0;
 window.addEventListener('load', () => {
     updateExpenseList();
     updateTotalAmount();
+    updateNetIncome(); // Calculate and display net income
 });
 
 function addExpense(event) {
@@ -31,6 +32,7 @@ function addExpense(event) {
         localStorage.setItem('expenses', JSON.stringify(expenses));
         updateExpenseList();
         updateTotalAmount();
+        updateNetIncome(); // Update net income after adding an expense
     }
 
     // Clear the form inputs
@@ -79,11 +81,30 @@ function deleteExpense(id) {
     localStorage.setItem('expenses', JSON.stringify(expenses));
     updateExpenseList();
     updateTotalAmount();
+    updateNetIncome(); // Update net income after deleting an expense
 }
 
 function updateTotalAmount(filteredExpenses = expenses) {
     totalAmount = filteredExpenses.reduce((total, expense) => total + expense.amount, 0);
     document.getElementById('total-amount').textContent = `Rs ${totalAmount.toFixed(2)}`;
+}
+
+// Function to calculate and display net income
+function updateNetIncome() {
+    const incomes = JSON.parse(localStorage.getItem('incomes')) || [];
+    const totalIncome = incomes.reduce((total, income) => total + income.amount, 0);
+    const totalExpenses = expenses.reduce((total, expense) => total + expense.amount, 0);
+    const netIncome = totalIncome - totalExpenses;
+
+    const netIncomeElement = document.getElementById('net-income-amount');
+    netIncomeElement.textContent = `Rs ${netIncome.toFixed(2)}`;
+
+    // Change color based on net income
+    if (netIncome < 0) {
+        netIncomeElement.style.color = '#e74c3c'; // Red for negative net income
+    } else {
+        netIncomeElement.style.color = '#4CAF50'; // Green for positive net income
+    }
 }
 
 // Function to filter expenses by category
