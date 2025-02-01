@@ -177,3 +177,21 @@ td {
       padding: 8px 16px;
   }
 }
+/* Category Filter Section */
+#category-filter {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+#category-filter label {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+#category-filter select {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+}

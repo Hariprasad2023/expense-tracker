@@ -1,5 +1,7 @@
 document.getElementById('expense-form').addEventListener('submit', addExpense);
-let expenses = JSON.parse(localStorage.getItem('expenses')) || []; // Fetch expenses from local storage
+document.getElementById('filter-category').addEventListener('change', filterExpenses); // Add event listener for category filter
+
+let expenses = JSON.parse(localStorage.getItem('expenses')) || [];
 let totalAmount = 0;
 
 // Load expenses when the page loads
@@ -26,7 +28,7 @@ function addExpense(event) {
         };
 
         expenses.push(expense);
-        localStorage.setItem('expenses', JSON.stringify(expenses)); // Save to local storage
+        localStorage.setItem('expenses', JSON.stringify(expenses));
         updateExpenseList();
         updateTotalAmount();
     }
@@ -37,11 +39,11 @@ function addExpense(event) {
     document.getElementById('amount').value = '';
 }
 
-function updateExpenseList() {
+function updateExpenseList(filteredExpenses = expenses) {
     const expenseTableBody = document.getElementById('expenses');
     expenseTableBody.innerHTML = ''; // Clear previous table rows
 
-    expenses.forEach(expense => {
+    filteredExpenses.forEach(expense => {
         const row = document.createElement('tr');
 
         // Create cells for each piece of information
@@ -74,12 +76,25 @@ function updateExpenseList() {
 
 function deleteExpense(id) {
     expenses = expenses.filter(expense => expense.id !== id);
-    localStorage.setItem('expenses', JSON.stringify(expenses)); // Update local storage
+    localStorage.setItem('expenses', JSON.stringify(expenses));
     updateExpenseList();
     updateTotalAmount();
 }
 
-function updateTotalAmount() {
-    totalAmount = expenses.reduce((total, expense) => total + expense.amount, 0);
+function updateTotalAmount(filteredExpenses = expenses) {
+    totalAmount = filteredExpenses.reduce((total, expense) => total + expense.amount, 0);
     document.getElementById('total-amount').textContent = `Rs ${totalAmount.toFixed(2)}`;
+}
+
+// Function to filter expenses by category
+function filterExpenses() {
+    const selectedCategory = document.getElementById('filter-category').value;
+    let filteredExpenses = expenses;
+
+    if (selectedCategory !== 'All') {
+        filteredExpenses = expenses.filter(expense => expense.category === selectedCategory);
+    }
+
+    updateExpenseList(filteredExpenses);
+    updateTotalAmount(filteredExpenses);
 }
