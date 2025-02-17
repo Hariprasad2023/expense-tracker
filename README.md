@@ -1,3 +1,5 @@
+![Screenshot (42)](https://github.com/user-attachments/assets/08453497-795b-47bd-ad1a-501f10856065)
+![Screenshot (41)](https://github.com/user-attachments/assets/9385a86c-72f1-4af3-a52a-08c710ba9999)
 Expense and Income Tracker
 Overview
 The Expense and Income Tracker is a web-based application that helps users manage their finances by tracking their expenses and incomes. It allows users to:
